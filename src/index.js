@@ -1,4 +1,8 @@
+import menuCardTpl from './templates/menu-card.hbs';
+import cards from './menu.json';
 import './sass/main.scss';
+
+// ===== CHANGE OF THEME =====
 
 const refs = {
   switch: document.querySelector('#theme-switch-toggle'),
@@ -38,4 +42,14 @@ function onCurrentClass() {
     // console.log(refs.switch.checked);
     return refs.body.classList.add(Theme.LIGHT);
   }
+}
+
+// ===== TEMPLATE MARKUP =====
+const cardContainer = document.querySelector('.js-menu');
+const cardsMarkup = createColorCardsMarkup(cards);
+
+cardContainer.insertAdjacentHTML('beforeend', cardsMarkup);
+
+function createColorCardsMarkup(cards) {
+  return cards.map(menuCardTpl).join(' ');
 }
